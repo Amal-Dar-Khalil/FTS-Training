@@ -7,55 +7,65 @@ namespace Stack
     {
         static void Main(string[] args)
         {
-            MinStack testStack = new MinStack();
+            MyStack<int> testStack = new MyStack<int>();
             testStack.Push(1);
-            Console.WriteLine(testStack.GetMin()+"");
+            testStack.Print();
             testStack.Push(2);
-            Console.WriteLine(testStack.GetMin()+"");
-            Console.WriteLine(testStack.Top()+"");
+            testStack.Print();
+            Console.WriteLine(testStack.Peak()+"");
+            testStack.Print();
             testStack.Push(3);
+            testStack.Print();
             testStack.Pop();
-            Console.WriteLine(testStack.GetMin()+"");
+            testStack.Print();
             testStack.Push(4);
-            Console.WriteLine(testStack.GetMin()+"");
+            testStack.Print();
             testStack.Pop();
-            Console.WriteLine(testStack.Top()+"");
+            testStack.Print();
+            Console.WriteLine(testStack.Peak()+"");
+            testStack.Print();
+            testStack.Clear();
+            testStack.Print();
 
         }
     }
 
-    public class MinStack {
-    List<int> minStack;
-    List<int> stack;
-    public MinStack() {
-        this.minStack = new List<int>();
-        this.stack = new List<int>();
+    public class MyStack<T> {
+    List<T> stack;
+    public MyStack() {
+        this.stack = new List<T>();
     }
     
-    public void Push(int x) {
+    public void Push(T x) {
         stack.Add(x);
-        if(minStack.Count == 0)
-            minStack.Add(x);
-        else if(x <= minStack[minStack.Count - 1])
-            minStack.Add(x);
     }
     
-    public void Pop() {
-        if(stack[stack.Count - 1] == minStack[minStack.Count - 1])
-            minStack.RemoveAt(minStack.Count - 1);//remove the min
-        stack.RemoveAt(stack.Count - 1);//remove the top
+    public T Pop() {
+        if(this.IsEmpty())
+            throw new InvalidOperationException("The stack is empty!");
+        T top = this.Peak();
+        stack.RemoveAt(stack.Count - 1);
+        return top;
     }
     
-    public int Top() {
+    public T Peak() {
         return stack[stack.Count - 1];
     }
     
-    public int GetMin() {
-        return minStack[minStack.Count - 1];
+    public void Clear(){
+        this.stack.Clear();//or pop till the stack become empty.
     }
-    
     public bool IsEmpty(){
         return (stack.Count == 0);
+    }
+    public void Print(){
+        if(this.IsEmpty()){ 
+            Console.WriteLine("____________________");
+            return;}
+        T element = this.Peak();
+        Console.WriteLine(this.Pop()+"");
+        this.Print();
+        this.Push(element);
     }
 }
 }
