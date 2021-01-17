@@ -8,24 +8,29 @@ namespace Stack
         static void Main(string[] args)
         {
             MyStack<int> testStack = new MyStack<int>();
-            testStack.Push(1);
-            testStack.Print();
-            testStack.Push(2);
-            testStack.Print();
-            Console.WriteLine(testStack.Peak()+"");
-            testStack.Print();
-            testStack.Push(3);
-            testStack.Print();
-            testStack.Pop();
-            testStack.Print();
-            testStack.Push(4);
-            testStack.Print();
-            testStack.Pop();
-            testStack.Print();
-            Console.WriteLine(testStack.Peak()+"");
-            testStack.Print();
-            testStack.Clear();
-            testStack.Print();
+            try{
+                testStack.Push(1);
+                testStack.Print();
+                testStack.Push(2);
+                testStack.Print();
+                Console.WriteLine(testStack.Peak()+"");
+                testStack.Print();
+                testStack.Push(3);
+                testStack.Print();
+                testStack.Pop();
+                testStack.Print();
+                testStack.Push(4);
+                testStack.Print();
+                testStack.Pop();
+                testStack.Print();
+                Console.WriteLine(testStack.Peak()+"");
+                testStack.Print();
+                testStack.Clear();
+                testStack.Print();
+                testStack.Pop();}
+            catch(InvalidOperationException e){
+                Console.WriteLine(e.Message);
+            }
 
         }
     }
