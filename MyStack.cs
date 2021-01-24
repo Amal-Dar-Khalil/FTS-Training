@@ -34,19 +34,22 @@ namespace Stack
         
         public void Clear()
         {
-            this.data.Clear();
+            this.data.Clear();//or pop till the stack become empty.
         }
-
         public bool IsEmpty()
         {
             return (data.Count == 0);
         }
-
         public void Print()
         {
-            this.data.Reverse();
-            this.data.ForEach(x => { Console.WriteLine(x); });
-            this.data.Reverse();
+            if(this.IsEmpty())
+            { 
+                return;
+            }
+            T element = this.Peak();
+            Console.WriteLine(this.Pop());
+            this.Print();
+            this.Push(element);
         }
     }
 }
