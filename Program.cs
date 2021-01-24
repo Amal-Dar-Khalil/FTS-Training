@@ -32,7 +32,7 @@ namespace Stack
             {
                 Console.WriteLine(e.Message);
             }
-
         }
     }
 }
+
