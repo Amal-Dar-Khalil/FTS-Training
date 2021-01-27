@@ -5,7 +5,7 @@ namespace Stack
     public class MyStack<T> : IMyStack<T>
     {
         private List<T> data;
-        private int topIndex { get =>  data.Count - 1; }
+        private int topIndex =>  data.Count - 1;
         public MyStack() 
         {
             this.data = new List<T>();
@@ -22,7 +22,7 @@ namespace Stack
             {
                 throw new InvalidOperationException("The stack is empty!");
             }
-            T top = this.Peak();
+            var top = this.Peak();
             data.RemoveAt(topIndex);
             return top;
         }
@@ -44,8 +44,12 @@ namespace Stack
 
         public void Print()
         {
-            this.data.Reverse();
-            this.data.ForEach(x => Console.WriteLine(x));
+            var tempData = new T[this.data.Count];
+            this.data.CopyTo(tempData);
+            for (int i = tempData.Length - 1; i >= 0 ; i--)
+            {
+             Console.WriteLine(tempData[i]);   
+            }
         }
     }
 }
