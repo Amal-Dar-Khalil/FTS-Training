@@ -44,11 +44,9 @@ namespace Stack
 
         public void Print()
         {
-            var tempData = new T[this.data.Count];
-            this.data.CopyTo(tempData);
-            for (int i = tempData.Length - 1; i >= 0 ; i--)
+            for (int i = this.data.Count - 1; i >= 0 ; i--)
             {
-             Console.WriteLine(tempData[i]);   
+             Console.WriteLine(this.data[i]);   
             }
         }
     }
